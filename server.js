@@ -15,9 +15,6 @@ const db = new sqlite3.Database('./db/election.db', err => {
     console.log('Connected to the election database.')
 })
 
-// db.all(`SELECT * FROM candidates`, (err, rows) => {
-//     console.log(rows)
-// })
 app.get('/api/candidates', (req, res) => {
     const sql = `SELECT * FROM candidates`;
     const params = []

@@ -84,14 +84,14 @@ router.put('/candidates/:id', (req, res) => {
 })
 
 router.post('/candidates', ({ body }, res) => {
-    const errors = inputCheck(body, 'first_name', 'last_name', 'industry_connected');
+    const errors = inputCheck(body, 'first_name', 'last_name', 'party_id', 'industry_connected');
     if(errors) {
         res.status(400).json({ error: errors});
         return;
     }
-    const sql = `INSERT INTO candidates (first_name, last_name, industry_connected)
-                VALUES (?,?,?)`;
-    const params = [body.first_name, body.last_name, body.industry_connected];
+    const sql = `INSERT INTO candidates (first_name, last_name, party_id, industry_connected)
+                VALUES (?,?,?,?)`;
+    const params = [body.first_name, body.last_name, body.party_id, body.industry_connected];
 
     db.run(sql, params, function(err, result) {
         if (err) {

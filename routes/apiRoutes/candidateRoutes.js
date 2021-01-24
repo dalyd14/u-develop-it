@@ -31,8 +31,8 @@ router.get('/candidates/:id', (req, res) => {
                  WHERE candidates.id = ?`;
     const params = [req.params.id]
     db.get(sql, params, (err, row) => {
-        if (err) {
-            res.status(400).json({ error: err.message })
+        if (!row) {
+            res.status(400).json({ error: "candidate doesn't exist" })
             return;
         }
         res.json({
